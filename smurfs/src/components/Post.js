@@ -10,7 +10,8 @@ class Posts extends Component {
       //just using the logic and calling the function placed into a prop
         this.props.fetchPosts();
       }
-    
+      
+      //update life cycle method recieved props from state
       componentWillReceiveProps(nextProps) {
         if (nextProps.newPost) {
           this.props.posts.unshift(nextProps.newPost);
@@ -21,8 +22,8 @@ class Posts extends Component {
         const postItems = this.props.posts.map(post => (
             <div key={post.id}>
             <h3>{post.name}</h3>
-            <p>{post.age}</p>
-            <p>{post.height}</p>
+            <p>{post.age} years old</p>
+            <p>{post.height} cm</p>
             </div>
         ));
         return (
@@ -37,11 +38,11 @@ class Posts extends Component {
 // propTypes will check props passed to your 
 // components against those definitions, and warn in development if they don’t match.
 
-// Posts.propTypes = {
-//     // fetchPosts: PropTypes.func.isRequired,
-//     // posts: PropTypes.array.isRequired,
-//     // newPost: PropTypes.object
-//   };
+Posts.propTypes = {
+    fetchPosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired,
+    newPost: PropTypes.object
+  };
   
 
   //I needed to get new items from state and i used 
@@ -49,6 +50,7 @@ class Posts extends Component {
   //used posts. see index.js inside reducer directory
   const mapStateToProps = state => ({
     posts: state.posts.items,
+    //comes from reducer
     newPost: state.posts.item
   });
 

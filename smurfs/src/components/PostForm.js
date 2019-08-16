@@ -28,7 +28,7 @@ class PostForm extends Component {
         age: this.state.age,
         height: this.state.height
       };
-  
+      //action aka my fetch
       this.props.createPost(post);
     }
   
